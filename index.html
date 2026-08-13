@@ -149,6 +149,26 @@
   }
   @media (max-width:720px){.toolkit-grid{grid-template-columns:1fr;}}
 
+  /* TEMPLATE CARDS */
+  .template-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .template-card{
+    background:var(--ink-soft);border:1px solid rgba(233,226,205,0.12);border-radius:6px;
+    padding:22px;position:relative;
+  }
+  .template-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);border-radius:6px 6px 0 0;}
+  .template-card.teal::before{background:var(--teal);}
+  .template-card h3{
+    font-family:'Fraunces',serif;font-weight:600;font-size:16.5px;color:var(--paper);margin:6px 0 8px;
+  }
+  .template-card .kind{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);
+  }
+  .template-card.teal .kind{color:var(--teal);}
+  .template-card p{font-size:13.5px;line-height:1.6;color:rgba(233,226,205,0.78);margin:0 0 12px;}
+  .template-card ul{margin:0;padding-left:16px;}
+  .template-card li{font-size:12.5px;line-height:1.6;color:rgba(233,226,205,0.62);margin-bottom:4px;}
+  @media (max-width:720px){.template-grid{grid-template-columns:1fr;}}
+
   /* LANGUAGES */
   .lang-row{display:grid;grid-template-columns:110px 1fr 60px;align-items:center;gap:14px;margin-bottom:14px;}
   .lang-name{font-size:14px;color:var(--paper);}
@@ -191,6 +211,8 @@
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#featured-project">Project</a></li>
+      <li><a href="#templates">Templates</a></li>
       <li><a href="#toolkit">Toolkit</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -282,6 +304,133 @@
         <ul>
           <li>Managed merchandise stock, payment schedules and payroll records</li>
           <li>Oversaw cash control, placed orders, sourced new clients and suppliers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="featured-project">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">02.1</span><h2>Featured project</h2><hr></div>
+
+    <div class="entry reveal" style="grid-template-columns:1fr;">
+      <div>
+        <div class="role">EAUtonomy, Field Survey Tracking System</div>
+        <div class="org">Pan African Consortium of Experts · 8 zones across 4 communes · 10-day operation</div>
+        <p style="font-size:14.5px;line-height:1.65;color:var(--text-dim);margin:4px 0 18px;max-width:640px;">
+          Designed and ran the tracking workbook behind a 9-enumerator household survey: a daily entry sheet feeding
+          three self-updating recap views (by zone, by agent, by profile), built on SUMIFS formulas so the team could
+          see progress against sampling quotas in real time instead of waiting for an end-of-week count.
+        </p>
+
+        <svg viewBox="0 0 640 190" style="width:100%;max-width:640px;height:auto;margin-bottom:6px;" role="img" aria-label="Avancement par zone par rapport à l'objectif d'échantillon">
+          <!-- baseline -->
+          <line x1="0" y1="150" x2="640" y2="150" stroke="rgba(34,32,26,0.18)" stroke-width="1"/>
+          <!-- 100% target reference line -->
+          <line x1="0" y1="40" x2="640" y2="40" stroke="rgba(34,32,26,0.28)" stroke-width="1" stroke-dasharray="3 4"/>
+          <text x="640" y="36" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10" fill="#5c5646">objectif = 100%</text>
+
+          <!-- bars: zone, % of quota reached, scaled to 110px max at 130% -->
+          <!-- Mbackeuneu 100% -->
+          <rect x="20"  y="72" width="46" height="78" fill="#c79a45"/>
+          <text x="43"  y="166" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#5c5646">Mbackeuneu</text>
+          <text x="43"  y="64" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#22201a">100%</text>
+
+          <!-- Diecko Sud 100% -->
+          <rect x="96"  y="72" width="46" height="78" fill="#3f7267"/>
+          <text x="119" y="166" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#5c5646">Diecko Sud</text>
+          <text x="119" y="64" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#22201a">100%</text>
+
+          <!-- Ndoyene 127% -->
+          <rect x="172" y="51" width="46" height="99" fill="#c79a45"/>
+          <text x="195" y="166" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#5c5646">Ndoyene</text>
+          <text x="195" y="43" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#22201a">127%</text>
+
+          <!-- Keuri Kaw 100% -->
+          <rect x="248" y="72" width="46" height="78" fill="#3f7267"/>
+          <text x="271" y="166" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#5c5646">Keuri Kaw</text>
+          <text x="271" y="64" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#22201a">100%</text>
+
+          <!-- Cité Lamy 104% -->
+          <rect x="324" y="67" width="46" height="83" fill="#c79a45"/>
+          <text x="347" y="166" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#5c5646">Cité Lamy</text>
+          <text x="347" y="59" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#22201a">104%</text>
+
+          <!-- Bayal (DVF) 107% -->
+          <rect x="400" y="63" width="46" height="87" fill="#3f7267"/>
+          <text x="423" y="166" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#5c5646">Bayal</text>
+          <text x="423" y="55" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#22201a">107%</text>
+
+          <!-- Mbayène Peulh 110% -->
+          <rect x="476" y="58" width="46" height="92" fill="#c79a45"/>
+          <text x="499" y="166" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#5c5646">Mbayène P.</text>
+          <text x="499" y="50" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#22201a">110%</text>
+
+          <!-- Keur Mor Ndiaye 100% -->
+          <rect x="552" y="72" width="46" height="78" fill="#3f7267"/>
+          <text x="575" y="166" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#5c5646">Keur Mor N.</text>
+          <text x="575" y="64" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#22201a">100%</text>
+        </svg>
+
+        <div class="dash" style="margin-top:22px;background:rgba(34,32,26,0.1);border-color:rgba(34,32,26,0.12);">
+          <div class="tile" style="background:#f2ede0;--tile-accent:#c79a45;">
+            <div class="num" style="color:#22201a;">9</div>
+            <div class="lbl" style="color:#5c5646;">enumerators coordinated across the field operation</div>
+          </div>
+          <div class="tile" style="background:#f2ede0;--tile-accent:#3f7267;">
+            <div class="num" style="color:#22201a;">8</div>
+            <div class="lbl" style="color:#5c5646;">zones tracked across 4 communes</div>
+          </div>
+          <div class="tile" style="background:#f2ede0;--tile-accent:#c79a45;">
+            <div class="num" style="color:#22201a;">485 / 462</div>
+            <div class="lbl" style="color:#5c5646;">interviews completed against the sampling target</div>
+          </div>
+          <div class="tile" style="background:#f2ede0;--tile-accent:#3f7267;">
+            <div class="num" style="color:#22201a;">105%</div>
+            <div class="lbl" style="color:#5c5646;">of the overall quota reached</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="templates">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">02.2</span><h2>Templates &amp; tools</h2><hr></div>
+    <p style="font-size:15px;line-height:1.7;color:rgba(233,226,205,0.78);max-width:620px;margin:0 0 30px;">
+      Most of what I build ends up in Excel or Monday.com, and it keeps getting used by other people long after I've handed it off. Three I go back to often:
+    </p>
+    <div class="template-grid">
+      <div class="template-card reveal">
+        <div class="kind">Excel workbook</div>
+        <h3>Grant &amp; funding pipeline tracker</h3>
+        <p>A single sheet to screen and prioritize funding opportunities against an organization's mandate, with a summary tab that counts and totals everything by status on its own.</p>
+        <ul>
+          <li>Fields for funder, deadline, amount, fit score, status, owner</li>
+          <li>Dropdown lists so status stays consistent across entries</li>
+          <li>Auto-updating count and total by pipeline stage</li>
+        </ul>
+      </div>
+      <div class="template-card teal reveal">
+        <div class="kind">Excel workbook</div>
+        <h3>Conference &amp; travel logistics tracker</h3>
+        <p>Built for the run-up to an international conference: visas, flights, hotel, per diem, presentation documents, one row per traveler so nothing falls through between requests and confirmations.</p>
+        <ul>
+          <li>Status dropdowns for visa, flight and accommodation</li>
+          <li>Readiness summary showing what's still pending at a glance</li>
+          <li>Reusable across events without rebuilding the sheet</li>
+        </ul>
+      </div>
+      <div class="template-card reveal">
+        <div class="kind">Excel workbook</div>
+        <h3>Budget vs actual tracker</h3>
+        <p>The sheet I wish I'd had before reconstructing four years of accounting history. Enter what was budgeted and what was spent, variance and percentage used calculate themselves.</p>
+        <ul>
+          <li>Line items grouped by category</li>
+          <li>Variance and % used computed automatically</li>
+          <li>Running totals at the bottom, no manual re-adding</li>
         </ul>
       </div>
     </div>
