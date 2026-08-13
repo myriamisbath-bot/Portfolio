@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Myriam Isbath Oumorou · Operations & Program Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12161d;
+    --ink-soft:#1c2230;
+    --paper:#e9e2cd;
+    --paper-dim:#d9d0b6;
+    --gold:#c79a45;
+    --teal:#3f7267;
+    --text-on-paper:#22201a;
+    --text-dim:#5c5646;
+    --line:rgba(34,32,26,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(18,22,29,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(233,226,205,0.12);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px;}
+  .brand{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.06em;color:var(--paper);}
+  .brand b{color:var(--gold);}
+  nav ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;}
+  nav a{color:var(--paper);opacity:0.72;text-decoration:none;font-size:13px;letter-spacing:0.02em;}
+  nav a:hover, nav a:focus-visible{opacity:1;color:var(--gold);}
+
+  /* HERO */
+  header.hero{padding:88px 0 56px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--teal);background:rgba(63,114,103,0.16);
+    display:inline-block;padding:5px 10px;border-radius:3px;
+    border:1px solid rgba(63,114,103,0.4);
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(38px,6vw,60px);
+    line-height:1.04;
+    margin:20px 0 10px;
+    color:var(--paper);
+  }
+  .role-line{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:14px;color:var(--gold);letter-spacing:0.02em;margin-bottom:26px;
+  }
+  .tagline{
+    font-size:18px;line-height:1.55;color:rgba(233,226,205,0.82);
+    max-width:560px;margin:0 0 8px;
+  }
+
+  /* STAT DASHBOARD STRIP */
+  .dash{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:rgba(233,226,205,0.14);
+    border:1px solid rgba(233,226,205,0.14);
+    border-radius:6px;overflow:hidden;margin-top:46px;
+  }
+  .tile{background:var(--ink-soft);padding:22px 18px;position:relative;}
+  .tile::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:var(--tile-accent, var(--gold));
+  }
+  .tile:nth-child(1){--tile-accent:var(--gold);}
+  .tile:nth-child(2){--tile-accent:var(--teal);}
+  .tile:nth-child(3){--tile-accent:var(--gold);}
+  .tile:nth-child(4){--tile-accent:var(--teal);}
+  .tile:nth-child(5){--tile-accent:var(--gold);}
+  .tile:nth-child(6){--tile-accent:var(--teal);}
+  .tile .num{
+    font-family:'IBM Plex Mono',monospace;font-size:30px;font-weight:500;color:var(--paper);
+  }
+  .tile .lbl{font-size:12.5px;color:rgba(233,226,205,0.62);margin-top:6px;line-height:1.4;}
+
+  @media (max-width:680px){
+    .dash{grid-template-columns:repeat(2,1fr);}
+  }
+
+  section{padding:64px 0;}
+  .section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:30px;}
+  .section-head .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.1em;
+    color:var(--gold);text-transform:uppercase;
+  }
+  .section-head h2{
+    font-family:'Fraunces',serif;font-weight:500;font-size:28px;margin:0;color:var(--paper);
+  }
+  .section-head hr{flex:1;border:none;border-top:1px solid rgba(233,226,205,0.16);}
+
+  /* ABOUT */
+  #about p{font-size:17px;line-height:1.75;color:rgba(233,226,205,0.86);max-width:660px;}
+  #about p + p{margin-top:16px;}
+
+  /* LEDGER / EXPERIENCE */
+  .entry{
+    background:var(--paper);color:var(--text-on-paper);
+    border-radius:6px;padding:26px 28px;margin-bottom:14px;
+    display:grid;grid-template-columns:150px 1fr;gap:22px;
+  }
+  .entry .when{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--text-dim);
+    line-height:1.6;padding-top:3px;
+  }
+  .entry .role{font-family:'Fraunces',serif;font-weight:600;font-size:19px;margin:0 0 2px;}
+  .entry .org{font-size:13.5px;color:var(--text-dim);margin-bottom:12px;}
+  .entry ul{margin:0;padding-left:18px;}
+  .entry li{font-size:14.5px;line-height:1.6;margin-bottom:6px;color:var(--text-on-paper);}
+  .entry li:last-child{margin-bottom:0;}
+  @media (max-width:640px){
+    .entry{grid-template-columns:1fr;}
+  }
+
+  /* TOOLKIT */
+  .toolkit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .tool-group{background:var(--ink-soft);border:1px solid rgba(233,226,205,0.12);border-radius:6px;padding:20px;}
+  .tool-group h3{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;
+    letter-spacing:0.08em;color:var(--teal);margin:0 0 14px;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-size:13px;padding:5px 10px;border-radius:20px;
+    background:rgba(233,226,205,0.08);border:1px solid rgba(233,226,205,0.18);
+    color:rgba(233,226,205,0.88);
+  }
+  @media (max-width:720px){.toolkit-grid{grid-template-columns:1fr;}}
+
+  /* LANGUAGES */
+  .lang-row{display:grid;grid-template-columns:110px 1fr 60px;align-items:center;gap:14px;margin-bottom:14px;}
+  .lang-name{font-size:14px;color:var(--paper);}
+  .lang-track{height:6px;background:rgba(233,226,205,0.14);border-radius:4px;overflow:hidden;}
+  .lang-fill{height:100%;background:var(--gold);border-radius:4px;}
+  .lang-level{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal);text-align:right;}
+
+  /* EDUCATION */
+  .edu-item{border-bottom:1px solid rgba(233,226,205,0.12);padding:14px 0;}
+  .edu-item:last-child{border-bottom:none;}
+  .edu-item .deg{font-size:15px;color:var(--paper);font-weight:500;}
+  .edu-item .meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(233,226,205,0.55);margin-top:3px;}
+  .certs{margin-top:22px;}
+  .certs h3{font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--teal);margin:0 0 12px;}
+  .certs li{font-size:13.5px;color:rgba(233,226,205,0.78);line-height:1.7;}
+
+  /* CONTACT */
+  footer{padding:70px 0 90px;text-align:center;}
+  footer .closing{
+    font-family:'Fraunces',serif;font-size:26px;color:var(--paper);max-width:480px;margin:0 auto 26px;line-height:1.4;
+  }
+  .contact-row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-bottom:22px;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    padding:11px 20px;border-radius:4px;text-decoration:none;letter-spacing:0.02em;
+  }
+  .btn-primary{background:var(--gold);color:#1a1508;}
+  .btn-secondary{border:1px solid rgba(233,226,205,0.3);color:var(--paper);}
+  .contact-meta{font-size:13px;color:rgba(233,226,205,0.5);}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><b>M.I.O</b> / ops &amp; program support</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#toolkit">Toolkit</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Available for remote work, EST/PST overlap</span>
+    <h1>Myriam Isbath<br>Oumorou</h1>
+    <div class="role-line">Operations · Admin &amp; Finance Support · Monitoring &amp; Evaluation · Dakar, Senegal</div>
+    <p class="tagline">I keep the operational side of a project honest: the dashboards get built, the accounts reconcile, the logistics land on time, and the people running things get what they need before they have to ask.</p>
+
+    <div class="dash">
+      <div class="tile"><div class="num">6+</div><div class="lbl">years across program operations, finance &amp; admin</div></div>
+      <div class="tile"><div class="num">500+</div><div class="lbl">member records digitized and managed</div></div>
+      <div class="tile"><div class="num">9</div><div class="lbl">field enumerators led through a 10‑day survey</div></div>
+      <div class="tile"><div class="num">4 yrs</div><div class="lbl">of accounting history reconstructed into SAGE</div></div>
+      <div class="tile"><div class="num">76</div><div class="lbl">funding opportunities mapped into a live grant pipeline</div></div>
+      <div class="tile"><div class="num">3-part</div><div class="lbl">donor tender dossiers coordinated end to end</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">01</span><h2>About</h2><hr></div>
+    <p class="reveal">My background mixes monitoring and evaluation with hands-on admin and finance work, so I'm equally comfortable designing a tracking framework and chasing down a missing receipt. I've built dashboards to track project indicators, coordinated steering committee meetings, handled the paperwork behind grant payments, and cleaned up years of accounting records so partners could trust the numbers again.</p>
+    <p class="reveal">On the resourcing side, I map and prioritize funding opportunities against an organization's mandate, keep that pipeline alive in a shared tool the whole team can act on, and pull together the administrative, technical and financial pieces a donor dossier needs under real deadlines, not hypothetical ones.</p>
+    <p class="reveal">I'm also the person who ends up owning the numbers: cleaning raw survey data, building baseline indicators, and moving between SPSS, Stata, Eviews and Python depending on what the analysis calls for. It's the same instinct as the admin work, really, just applied to a dataset instead of a filing system.</p>
+    <p class="reveal">I've also run the quieter side of operations: leadership calendars, travel and visa logistics for international conferences, supplier and vendor coordination, member databases. Nothing glamorous, but it's the layer that lets everyone else stay focused on the actual work.</p>
+    <p class="reveal">That range is what drew me to the Operations Specialist role at UTTR. It reads like a job built for someone who doesn't need a single job title to feel useful.</p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">02</span><h2>Experience</h2><hr></div>
+
+    <div class="entry reveal">
+      <div class="when">Dec 2025<br>Present</div>
+      <div>
+        <div class="role">Junior Monitoring &amp; Evaluation Specialist</div>
+        <div class="org">Pan African Consortium of Experts, Dakar</div>
+        <ul>
+          <li>Built monitoring frameworks, dashboards and performance indicators for a multi-year sustainability project</li>
+          <li>Led a field survey operation with 9 enumerators and a focus-group facilitator over 10 days: logistics, timing, data quality</li>
+          <li>Wrote terms of reference for workshops and set baseline indicators for ongoing tracking</li>
+          <li>Cleaned and analyzed survey data in SPSS and Stata to turn raw responses into usable baseline indicators</li>
+          <li>Reviewed and prioritized 76 funding opportunities across the organization's mandate areas (digital governance, climate resilience, agriculture and fisheries, water access, biodiversity) and structured the results into a live grant-pipeline board in Monday.com</li>
+          <li>Coordinating the full administrative, technical and financial dossier for a restricted donor tender, including official correspondence and compliance clarifications, against a fixed submission deadline</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry reveal">
+      <div class="when">Jan<br>Nov 2025</div>
+      <div>
+        <div class="role">Administration, Finance &amp; Projects Assistant</div>
+        <div class="org">Pan African Consortium of Experts, Dakar</div>
+        <ul>
+          <li>Coordinated steering committee meetings: invitation letters, confirmation calls, meeting documents</li>
+          <li>Prepared deliverables tied to grant disbursements, including technical reports and compliance forms</li>
+          <li>Reconstructed four years of accounting history into SAGE, cleaning up records for partner reporting</li>
+          <li>Handled conference logistics for leadership: visas, tickets, accommodation, per diem</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry reveal">
+      <div class="when">Jan<br>Dec 2024</div>
+      <div>
+        <div class="role">Executive Assistant</div>
+        <div class="org">Afrothèque, Dakar</div>
+        <ul>
+          <li>Digitized and managed a database of roughly 500 members, including loans and acquisitions</li>
+          <li>Ran leadership's calendar and meetings; kept administrative files, archiving and supplies organized</li>
+          <li>Built a five-year financial projection to support a fundraising effort</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry reveal">
+      <div class="when">2019<br>2021</div>
+      <div>
+        <div class="role">Stock &amp; Accounting Manager</div>
+        <div class="org">Oxygen Ressources Supermarket, Cotonou</div>
+        <ul>
+          <li>Managed merchandise stock, payment schedules and payroll records</li>
+          <li>Oversaw cash control, placed orders, sourced new clients and suppliers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="toolkit">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">03</span><h2>Toolkit</h2><hr></div>
+    <div class="toolkit-grid">
+      <div class="tool-group reveal">
+        <h3>Ops &amp; Collaboration</h3>
+        <div class="chips">
+          <span class="chip">Notion</span><span class="chip">ClickUp</span><span class="chip">Monday.com</span>
+          <span class="chip">Teams</span><span class="chip">Zoom</span><span class="chip">Google Workspace</span>
+          <span class="chip">Microsoft Office</span>
+        </div>
+      </div>
+      <div class="tool-group reveal">
+        <h3>Finance &amp; Data</h3>
+        <div class="chips">
+          <span class="chip">SAGE</span><span class="chip">Excel</span><span class="chip">SPSS</span>
+          <span class="chip">Stata</span><span class="chip">Eviews</span><span class="chip">Python</span>
+          <span class="chip">R</span><span class="chip">Power BI (in progress)</span>
+        </div>
+      </div>
+      <div class="tool-group reveal">
+        <h3>Docs &amp; Admin</h3>
+        <div class="chips">
+          <span class="chip">Adobe Acrobat</span><span class="chip">Records management</span>
+          <span class="chip">Grant compliance paperwork</span><span class="chip">Donor tender dossiers</span>
+          <span class="chip">Field logistics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">04</span><h2>Education</h2><hr></div>
+
+    <div class="edu-item reveal">
+      <div class="deg">Master's, Decentralization &amp; Local Governance</div>
+      <div class="meta">Centre Africain d'Etudes Supérieures en Gestion, Dakar · thesis pending defense</div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="deg">Bachelor's, Management &amp; Decision Sciences</div>
+      <div class="meta">Centre Africain d'Etudes Supérieures en Gestion, Dakar · 2023</div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="deg">Bachelor's, Economic &amp; Sectoral Statistics</div>
+      <div class="meta">Ecole Nationale d'Economie Appliquée et de Management, Cotonou · 2020</div>
+    </div>
+
+    <div class="certs reveal">
+      <h3>Certificates</h3>
+      <ul>
+        <li>ALX, AI Career Essentials</li>
+        <li>Financial Management Fundamentals, Cornerstone &amp; DisasterReady</li>
+        <li>Personal Safety &amp; Security, Save the Children &amp; DisasterReady</li>
+        <li>Zone01 coding bootcamp, Go basics and intensive teamwork</li>
+        <li>Project Management, Center for Project Innovation (in progress)</li>
+        <li>Data Analysis, Udemy (Python, SQL, Power BI, in progress)</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:30px;">
+      <div class="section-head" style="margin-bottom:16px;"><span class="tag">Languages</span><hr></div>
+      <div class="lang-row reveal">
+        <div class="lang-name">French</div>
+        <div class="lang-track"><div class="lang-fill" style="width:100%"></div></div>
+        <div class="lang-level">C2</div>
+      </div>
+      <div class="lang-row reveal">
+        <div class="lang-name">English</div>
+        <div class="lang-track"><div class="lang-fill" style="width:62%"></div></div>
+        <div class="lang-level">B1/B2</div>
+      </div>
+      <div class="lang-row reveal">
+        <div class="lang-name">German</div>
+        <div class="lang-track"><div class="lang-fill" style="width:18%"></div></div>
+        <div class="lang-level">A1</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="closing reveal">If this looks like the kind of person your team needs, I'd welcome a conversation about the Operations Specialist role.</div>
+    <div class="contact-row reveal">
+      <a class="btn btn-primary" href="mailto:myriamisbath@gmail.com">Email me</a>
+      <a class="btn btn-secondary" href="https://wa.me/221774865180">WhatsApp</a>
+    </div>
+    <div class="contact-meta">Dakar, Senegal · +221 774865180 · myriamisbath@gmail.com</div>
+  </div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  items.forEach(i=>io.observe(i));
+</script>
+
+</body>
+</html>
